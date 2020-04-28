@@ -1,0 +1,35 @@
+[GLOBAL]
+pants_version = "1.28.0.dev0"
+v1 = false  # turn off the v1 execution engine
+v2 = true  # enable the v2 execution engine
+v2_ui = false  # disable the v2 execution engine terminal based UI
+
+backend_packages = []  # de-register all v1 backends
+
+# v2 backends
+backend_packages2 = [
+  'pants.backend.python',
+  'pants.backend.python.lint.docformatter',
+  'pants.backend.python.lint.black',
+  'pants.backend.python.lint.flake8',
+  'pants.backend.python.lint.isort',
+  'pants.backend.python.lint.pylint',
+]
+
+# v2 plugins
+plugins2 = []
+
+[source]
+# python source root is the repo root
+source_roots = """{
+  '': ('python',),
+}"""
+
+[python-setup]
+interpreter_constraints = ["CPython>=3.7"]
+interpreter_search_paths = ["<PYENV_LOCAL>", "<PATH>"]
+
+[python-repos]
+indexes = [
+  "https://pypi.org/simple/"
+]
